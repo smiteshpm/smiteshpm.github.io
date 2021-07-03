@@ -48,7 +48,11 @@ svg.bi.bi-dot{
 
 .technologies-list{
     font-size: 14px;
-    padding-left: 1rem;
+    padding-left: 1rem !important;
+}
+
+.border-left {
+    border-left: 1px solid #b8b8b8 !important;
 }
 
 .degree, .job {
