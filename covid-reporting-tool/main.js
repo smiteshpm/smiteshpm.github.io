@@ -52,6 +52,11 @@ let mainFunction = (function() {
         .then(response => response.text())
         .then(result => {
             result = JSON.parse(result);
+            if(result.hasOwnProperty('success')) {
+                if(result.success == false) {
+                    throw new Error(result.message);
+                }
+            }
             result.sort((a,b) => (a.Country > b.Country) ? 1 : ((b.Country > a.Country) ? -1 : 0));
 
             let list = document.getElementById('countries');
@@ -74,7 +79,10 @@ let mainFunction = (function() {
                }
             });
         })
-        .catch(error => console.log('error', error));
+        .catch(error => {
+            console.log('error', error);
+            alert(error);
+        });
     };
 
     let createcard = function(rec, container, summaryCards = false) {
@@ -274,6 +282,13 @@ let mainFunction = (function() {
         .then(response => response.text())
         .then(result => {
             result = JSON.parse(result);
+            
+            if(result.hasOwnProperty('success')) {
+                if(result.success == false) {
+                    throw new Error(result.message);
+                }
+            }
+
             if(view == 'summary') {
                 loadSummaryData(result);
             } else if(view == 'live-data') {
@@ -285,6 +300,10 @@ let mainFunction = (function() {
             }
 
             document.getElementById('countries').value = 'null';
+        })
+        .catch(error => {
+            console.log('error', error);
+            alert(error);
         });
     }
    
