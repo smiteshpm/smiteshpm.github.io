@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Covid Reporting Tool</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">CRT</div>
+        <ul class="nav-links">
+            <input type="checkbox" id="checkbox_toggle" />
+            <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+            <div class="menu">
+                <li><a class="nav-btn active" href="javascript:void(0);" onclick="mainFunction.loadView()">Home</a></li>
+                <li><a class="nav-btn" href="javascript:void(0);" onclick="mainFunction.loadView('data-by-countries')">Data by countries</a></li>
+                <li><a class="nav-btn" href="javascript:void(0);" onclick="mainFunction.loadView('summary')">Summary</a></li>
+                <li><a class="nav-btn" href="javascript:void(0);" onclick="mainFunction.loadView('live-data')">Live Data</a></li>
+            </div>
+            
+        </ul>
+    </nav>
+
+    <div id="select-div">
+        <p>Select a country to show data</p>
+        <select id="countries"></select>
+    </div>
+
+    <div id="home">
+        <div class="title">
+            <h1>World: Displaying last 7 days data </h1>
+            <p>Note: Data refreshes every 10 mins</p>
+        </div>
+        <div>
+            <!-- <h2>Displaying data for <span id="home-section-country"></span></h2> -->
+            <div id="home-data-view"></div>
+        </div>
+    </div>
+    <div id="data-by-countries">
+        <h3>Data displayed country wise for last 6 days</h3>
+        <div id="country-wise-data-view"></div>
+    </div>
+    <div id="summary">
+        <div class="title">
+            <h1>Summary Data</h1>
+        </div>
+        <div>
+            <div id="summary-data-view">
+                <h3>Global data</h3>
+                <div id="global">
+                    
+                </div>
+                <h3>Country-wise data</h3>
+                <div id="countries-data">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="live-data">
+        <div class="title" id="live-data-title">
+            <h3>Live Data for <span id="selected-country"></span>, dated <span id="live-date"></span></h3>
+            <p>Note: Data refreshes every 10 mins</p>
+        </div>
+        <div id="live-data-view"></div>
+    </div>
+    <div class="loader" id="loader"></div>
+    <script src="./main.js"></script>
+</body>
+</html>
