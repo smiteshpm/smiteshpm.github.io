@@ -1,37 +1,37 @@
-var mainFunction = (function() {
-    var home = document.getElementById('home');
-    var loader = document.getElementById('loader');
-    var dataByCountry = document.getElementById('data-by-countries');
-    var summary = document.getElementById('summary');
-    var liveData = document.getElementById('live-data');
-    var selectedView = home;
-    var baseUrl = 'https://api.covid19api.com/';
-    var requestOptions = {
+let mainFunction = (function() {
+    let home = document.getElementById('home');
+    let loader = document.getElementById('loader');
+    let dataByCountry = document.getElementById('data-by-countries');
+    let summary = document.getElementById('summary');
+    let liveData = document.getElementById('live-data');
+    let selectedView = home;
+    let baseUrl = 'https://api.covid19api.com/';
+    let requestOptions = {
         method: 'GET',
         redirect: 'follow'
     };
 
-    var btnList = document.getElementsByClassName('nav-btn');
-    for (var i = 0; i < btnList.length; i++) {
+    let btnList = document.getElementsByClassName('nav-btn');
+    for (let i = 0; i < btnList.length; i++) {
         btnList[i].addEventListener("click", function() {
-            var current = document.getElementsByClassName("active");
+            let current = document.getElementsByClassName("active");
             current[0].className = current[0].className.replace(" active", "");
             this.className += " active";
         });
     }
 
-     var hideView = function() {
+     let hideView = function() {
         home.style.display = 'none';
         dataByCountry.style.display = 'none';
         liveData.style.display = 'none';
         summary.style.display = 'none';
     };
 
-    var showView = function(id) {
+    let showView = function(id) {
         id.style.display = 'flex';
     };
 
-    var loadView = function(id = '', btn) {
+    let loadView = function(id = '', btn) {
         hideView();
         selectedView = id;
         const countries = document.getElementById('select-div');
@@ -47,7 +47,7 @@ var mainFunction = (function() {
         }
     };
 
-    var loadCountries = function() {
+    let loadCountries = function() {
         fetch(baseUrl+"countries", requestOptions)
         .then(response => response.text())
         .then(result => {
@@ -77,7 +77,7 @@ var mainFunction = (function() {
         .catch(error => console.log('error', error));
     };
 
-    var createcard = function(rec, container, summaryCards = false) {
+    let createcard = function(rec, container, summaryCards = false) {
         const card = document.createElement('div');
         const cardTitle = document.createElement('div');
         const cardTitleP = document.createElement('p');
@@ -142,7 +142,7 @@ var mainFunction = (function() {
         container.append(card);
     };
 
-    var loadHomeData = function(result) {
+    let loadHomeData = function(result) {
         result.sort((a,b) => (a.Date > b.Date) ? 1 : ((b.Date > a.Date) ? -1 : 0));
         const home = document.getElementById('home');
         const container = document.getElementById('home-data-view');
@@ -166,7 +166,7 @@ var mainFunction = (function() {
         }, 600000);
     };
 
-    var loadDataByCountriesData = function(result) {
+    let loadDataByCountriesData = function(result) {
         result.sort((a,b) => (a.Date > b.Date) ? 1 : ((b.Date > a.Date) ? -1 : 0));
         const dataByCountries = document.getElementById('data-by-countries');
         const container = document.getElementById('country-wise-data-view');
@@ -182,7 +182,7 @@ var mainFunction = (function() {
                 createcard(rec, container, false);
             });
         } else {
-           var noData = document.createElement('p');
+           let noData = document.createElement('p');
             noData.classList = 'center';
             noData.innerText = 'No Data Found for ' + document.getElementById('countries').value + '.';
             container.append(noData);
@@ -192,7 +192,7 @@ var mainFunction = (function() {
        
     };
 
-    var loadLiveData = function(result) {
+    let loadLiveData = function(result) {
         result.sort((a,b) => (a.Date > b.Date) ? 1 : ((b.Date > a.Date) ? -1 : 0));
         const liveData = document.getElementById('live-data');
         const container = document.getElementById('live-data-view');
@@ -213,7 +213,7 @@ var mainFunction = (function() {
             });
         } else {
             h3El.style.display = 'none';
-            var noData = document.createElement('p');
+            let noData = document.createElement('p');
             noData.classList = 'center';
             noData.innerText = 'No Data Found for ' + document.getElementById('countries').value + '.';
             container.append(noData);
@@ -227,7 +227,7 @@ var mainFunction = (function() {
          
     };
 
-    var loadSummaryData = function(result) {
+    let loadSummaryData = function(result) {
         let globalData = result['Global'];
         let countriesData = result['Countries'];
         const summary = document.getElementById('summary');
@@ -247,7 +247,7 @@ var mainFunction = (function() {
         loader.style.display = 'none';
     }
 
-    var loadData = function(view = '', country = '') {
+    let loadData = function(view = '', country = '') {
         loader.style.display = 'block';
         let url = baseUrl;
         let today = new Date();
